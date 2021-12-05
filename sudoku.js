@@ -128,11 +128,11 @@ function Solution()
 
         for (let i = 0; i < 9; i++) {
             for (let j = 0; j < 9; j++) {
-                board[i][j] = inputVal[(j * 9) + i];
+                board[j][i] = inputVal[(j * 9) + i];
             }
         }
 
-        // console.table(board)
+        console.table(board)
         // board.forEach(row=>{
         //     row.forEach(elm=>console.log(elm));
         // })
@@ -235,8 +235,6 @@ function findEmptySquare(board)
         {
             if(board[i][j] == null)
             {
-                i
-                j
                 return [i,j];
             }
         }
