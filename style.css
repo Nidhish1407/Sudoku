@@ -53,7 +53,7 @@ nav>ul
     opacity: 0.7;
 }
 
-.btn+.btn{
+.btn +.btn{
     margin-left: 20px;
 }
 
@@ -86,3 +86,27 @@ nav>ul
     place-items: center;
 }
 
+@media (max-width:1000px){
+    .box{
+        height: 15px;
+        width: 15px;
+        padding: 0.6em;
+    }
+    .btns{
+        display: flex;
+        flex-direction: column;
+    }
+    .btn{
+        margin:0;
+        padding: 0.6em 2em;
+    }
+    .btn + .btn{
+        margin: 0;
+        margin-top: 10px;
+    }
+    .boards{
+        display: flex;
+        flex-direction: column;
+    }
+
+}
