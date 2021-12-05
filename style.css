@@ -57,20 +57,32 @@ nav>ul
     margin-left: 20px;
 }
 
-.board{
-    margin:0 auto;
+.boards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Solboard,
+.Userboard{
+    
     padding: 2em;
-    width: 50%;
+    max-width: 50%;
     border:1px solid red;
     display:grid;
     grid-template-columns: repeat(9,1fr);
     grid-template-rows:repeat(9,1fr);
+    
 }
 .box{
+
     border: 0.1px solid black;
     margin:0;
     padding: 1em;
+    text-align: center;
     display: grid;
+    height:20px;
+    width: 20px;
     place-items: center;
 }
 

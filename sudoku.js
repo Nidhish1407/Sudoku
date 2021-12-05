@@ -47,20 +47,121 @@ const bd4 = [
     [1, 2, 3, 4, 5, 6, 7, 8, 9]]
 
 
+const userInput = document.querySelector('.Userboard');
+const canvas    = document.querySelector('.Solboard');
+const SolveBtn     = document.querySelector('.solve');
+const GenerateBtn  = document.querySelector('.generate');
+const ResetBtn     = document.querySelector('.reset');
 
-const canvas = document.querySelector('.board');
-
-
-function init(board)
+function init()
 {
-    board.forEach(row=>{
-        row.forEach(elm=>{
-            canvas.insertAdjacentHTML('beforeend',`<div class="box">${elm}</div>`)
-        })
-    })
+    //initialize empty board for user input
+    for(let i = 0;i<81;i++)
+    {
+        userInput.insertAdjacentHTML('beforeend', `<input type="text" class = "box userInput">`);
+        canvas.insertAdjacentHTML('beforeend', `<input type="text" class = "box Sol" value = "?">`);
+    }
+}
+
+function twoDimensionArray(a, b) {
+    let arr = [];
+
+    // creating two dimensional array
+    for (let i = 0; i < a; i++) {
+        for (let j = 0; j < b; j++) {
+            arr[i] = [];
+        }
+    }
+
+    // inserting elements to array
+    for (let i = 0; i < a; i++) {
+        for (let j = 0; j < b; j++) {
+            arr[i][j] = j;
+        }
+    }
+    return arr;
 }
 
 
+let msg = "";
+SolveBtn.addEventListener('click',Solution);
+
+GenerateBtn.addEventListener('click',Generate);
+
+ResetBtn.addEventListener('click', () => {
+    const input = document.querySelectorAll('.userInput');
+    const Sol = document.querySelectorAll('.Sol');
+
+    input.forEach(elm => elm.value = "");
+    Sol.forEach(elm => elm.value = "?")
+
+})
+
+function Generate()
+{
+    console.log("jk")
+}
+
+function Solution()
+{
+    const input = document.querySelectorAll('.userInput');
+    const inputVal = [];
+    try {
+
+        input.forEach(elm => {
+
+            if ((elm.value != "" && elm.value <= 0) || isNaN(elm.value) || elm.value.length > 1) {
+                msg = "Please Enter numerical values between 1 - 9 only."
+
+                throw new error();
+            }
+            // console.log(elm.value)
+            if (elm.value == "")
+                inputVal.push(b);
+            else
+                inputVal.push(+elm.value);
+        })
+        // console.table(inputVal);
+
+        //Create 2d array
+        const board = twoDimensionArray(9, 9);
+
+        for (let i = 0; i < 9; i++) {
+            for (let j = 0; j < 9; j++) {
+                board[i][j] = inputVal[(j * 9) + i];
+            }
+        }
+
+        // console.table(board)
+        // board.forEach(row=>{
+        //     row.forEach(elm=>console.log(elm));
+        // })
+
+        if (!validBoard(board)) {
+            msg = "Invalid board";
+            throw new error();
+        }
+        updateSolBoard(board);
+    }
+    catch (err) {
+        console.log(err);
+        console.log(msg);
+        alert(msg);
+    }
+}
+
+function updateSolBoard(Userboard)
+{
+    let board = solve(Userboard);
+    console.log("Solution:");
+    console.table(board);
+    canvas.textContent = "";
+    board.forEach(row => {
+        row.forEach(elm=>{
+            canvas.insertAdjacentHTML('beforeend', `<input type="text" class = "box Sol" value = "${elm}">`);
+        })
+    })
+}
 
 
 function solve(board){
@@ -227,7 +328,12 @@ function boxesGood(board)
     return true;
 }
 
-console.log(solve(bd1))
-const sol = solve(bd1);
-init(sol)
+
+// console.log(solve(bd2))
+// const sol = solve(bd2);
+// init(sol)
+
+init()
+
+
 
