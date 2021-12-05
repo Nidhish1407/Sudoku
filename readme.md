@@ -1,1 +1,1 @@
-(Site)[https://nidhish1407.github.io/Sudoku/]
+[Site](https://nidhish1407.github.io/Sudoku/)
