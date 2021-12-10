@@ -87,6 +87,13 @@ nav>ul
 }
 
 @media (max-width:1000px) and (max-width:600px){
+    .container{
+        padding:1em;
+    }
+    .Solboard,
+    .Userboard{
+        border:none;
+    }
     .box{
         height: 15px;
         width: 15px;
