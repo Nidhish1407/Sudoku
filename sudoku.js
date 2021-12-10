@@ -53,13 +53,18 @@ const SolveBtn     = document.querySelector('.solve');
 const GenerateBtn  = document.querySelector('.generate');
 const ResetBtn     = document.querySelector('.reset');
 
+//Global variables
+let msg = ""; //For showing error in Solution()
+let IsGenerated = 0; //If board is generated Solution is already stored no need to run backtracking again
+let Solboard;
+
 function init()
 {
     //initialize empty board for user input
     for(let i = 0;i<81;i++)
     {
         userInput.insertAdjacentHTML('beforeend', `<input type="text" class = "box userInput">`);
-        canvas.insertAdjacentHTML('beforeend', `<input type="text" class = "box Sol" value = "?">`);
+        canvas.insertAdjacentHTML('beforeend', `<input type="text" class = "box Sol" value = "?" disabled>`);
     }
 }
 
@@ -83,7 +88,7 @@ function twoDimensionArray(a, b) {
 }
 
 
-let msg = "";
+
 SolveBtn.addEventListener('click',Solution);
 
 GenerateBtn.addEventListener('click',Generate);
@@ -99,11 +104,33 @@ ResetBtn.addEventListener('click', () => {
 
 function Generate()
 {
-    console.log("jk")
+    console.log("Generated Table: ");
+    let fillThisSq = Math.floor(Math.random()*10)&1;
+    Solboard = solve(bd2);
+    const board = [...Solboard];
+    for(let i =0;i<9;i++)
+    {
+        for(let j =0;j<9;j++)
+        {
+            fillThisSq = Math.floor(Math.random() * 10) & 1;
+            if(!fillThisSq)
+                board[i][j] = "";
+        }
+    }
+    userInput.textContent = "";
+    board.forEach(row=>{
+        row.forEach(elm=>{
+            userInput.insertAdjacentHTML('beforeend', `<input type="text" class = "box userInput" value = ${elm}>`);
+        })
+    })
 }
+
 
 function Solution()
 {
+    if(IsGenerated)
+        updateSolBoard(Solboard);
+
     const input = document.querySelectorAll('.userInput');
     const inputVal = [];
     try {
@@ -138,7 +165,7 @@ function Solution()
         // })
 
         if (!validBoard(board)) {
-            msg = "Invalid board";
+            msg = "Invalid board!";
             throw new error();
         }
         updateSolBoard(board);
@@ -152,13 +179,23 @@ function Solution()
 
 function updateSolBoard(Userboard)
 {
-    let board = solve(Userboard);
+    let board;
+    if(IsGenerated)
+    {
+        board = Userboard;
+        IsGenerated = 0;
+    }
+    else
+    {
+        board = solve(Userboard);
+    }
+
     console.log("Solution:");
     console.table(board);
     canvas.textContent = "";
     board.forEach(row => {
-        row.forEach(elm=>{
-            canvas.insertAdjacentHTML('beforeend', `<input type="text" class = "box Sol" value = "${elm}">`);
+        row.forEach(elm => {
+            canvas.insertAdjacentHTML('beforeend', `<input type="text" class = "box Sol" value = "${elm}" disabled>`);
         })
     })
 }
@@ -326,7 +363,7 @@ function boxesGood(board)
     return true;
 }
 
-
+//Test
 // console.log(solve(bd2))
 // const sol = solve(bd2);
 // init(sol)

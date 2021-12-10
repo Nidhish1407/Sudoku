@@ -1,1 +1,2 @@
-[Site](https://nidhish1407.github.io/Sudoku/)
+Sudoku solver
+[sudoku](https://nidhish1407.github.io/Sudoku/)
