@@ -86,7 +86,7 @@ nav>ul
     place-items: center;
 }
 
-@media (max-width:1000px) and (max-width:600px){
+@media (max-width:1000px){
     .container{
         padding:1em;
     }
