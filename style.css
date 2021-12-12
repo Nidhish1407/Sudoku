@@ -93,6 +93,7 @@ nav>ul
     .Solboard,
     .Userboard{
         border:none;
+        max-width: 100%;
     }
     .box{
         height: 15px;

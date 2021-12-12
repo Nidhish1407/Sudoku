@@ -12,17 +12,7 @@ const bd1 = [
     [b, b, b, b, b, b, b, b, b]
 ]
 
-const bd2 = [
-    [1, b, b, b, b, b, b, b, 3],
-    [b, b, b, b, b, b, b, b, b],
-    [b, b, b, b, 8, b, b, b, b],
-    [b, b, b, b, b, b, b, b, b],
-    [b, b, b, b, b, b, b, b, b],
-    [b, b, b, b, b, b, 4, b, b],
-    [b, b, b, b, b, b, b, b, b],
-    [b, 3, b, b, b, b, b, b, b],
-    [b, b, b, b, b, b, b, b, 9]
-]
+
 
 const bd3 = [
     [b, b, b, b, b, 8, 9, 1, b],
@@ -101,6 +91,19 @@ ResetBtn.addEventListener('click', () => {
     Sol.forEach(elm => elm.value = "?")
 
 })
+
+//Initial board to generate sudoku puzzle on
+const bd2 = [
+    [1, b, b, b, b, b, b, b, 3],
+    [b, b, b, b, b, b, b, b, b],
+    [b, b, b, b, 8, b, b, b, b],
+    [b, b, b, b, b, b, b, b, b],
+    [b, b, b, b, b, b, b, b, b],
+    [b, b, b, b, b, b, 4, b, b],
+    [b, b, b, b, b, b, b, b, b],
+    [b, 3, b, b, b, b, b, b, b],
+    [b, b, b, b, b, b, b, b, 9]
+]
 
 function Generate()
 {
@@ -368,7 +371,7 @@ function boxesGood(board)
 // const sol = solve(bd2);
 // init(sol)
 
-init()
+init();
 
 
 
