@@ -198,7 +198,7 @@ function updateSolBoard(Userboard)
     canvas.textContent = "";
     board.forEach(row => {
         row.forEach(elm => {
-            canvas.insertAdjacentHTML('beforeend', `<input type="text" class = "box Sol" value = "${elm}" disabled>`);
+            canvas.insertAdjacentHTML('beforeend', `<input type="text" class = "box Sol" value = "${elm}">`);
         })
     })
 }

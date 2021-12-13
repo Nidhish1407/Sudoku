@@ -1,7 +1,11 @@
 body{
     margin:0;
     padding:0;
-    /* background-color: bisque; */
+    background: url('img/polygon-scatter-haikei.png');
+}
+
+h1{
+    color: aliceblue;
 }
 
 .container
@@ -74,6 +78,7 @@ nav>ul
     grid-template-rows:repeat(9,1fr);
     
 }
+
 .box{
 
     border: 0.1px solid black;
@@ -84,6 +89,8 @@ nav>ul
     height:20px;
     width: 20px;
     place-items: center;
+    font-weight: 600;
+    opacity: 0.85;
 }
 
 @media (max-width:1000px){
